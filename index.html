@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@500&family=Poppins:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styleScanner.css">
+</head>
+
+<body>
+    <div class="mask" id="mask" onclick="hideQR()"></div>
+    <div class="title">
+        <h1>Hi,</h1>
+        <h1>Welcome</h1>
+    </div>
+    <div>
+        <img onclick="showQR()" class="imagee" src="Map.png" alt="">
+    </div>
+    <div class="camera" id="camera">
+        <img id="view" class="view img-responsive" src="CAMERAVIEW.png" alt="">
+        <div id="reader" onclick="hideView()"></div>
+    </div>
+    <!-- <div class="Result">
+        <h4>VISIT HERE</h4>
+        <div id="result">Result Here</div>
+    </div> -->
+
+    <!-- <script>
+        location.replace("https://www.youtube.com/")
+    </script> -->
+
+    <script src="html5-qrcode.min.js"></script>
+
+    <script type="text/javascript">
+        function onScanSuccess(qrCodeMessage) {
+            document.getElementById('result').innerHTML = '<span class="result">' + qrCodeMessage + '</span>';
+            location.replace(qrCodeMessage)
+        }
+
+        function onScanError(errorMessage) {
+            //handle scan error
+        }
+
+        function showQR() {
+            document.getElementById('mask').style.display = 'block';
+            document.getElementById('camera').style.display = 'block';
+        }
+        function hideQR() {
+            document.getElementById('mask').style.display = 'none';
+            document.getElementById('camera').style.display = 'none';
+        }
+
+        function hideView() {
+            document.getElementById('view').style.display = 'none';
+        }
+
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+    </script>
+</body>
+
+</html>
